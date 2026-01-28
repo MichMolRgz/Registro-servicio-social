@@ -30,15 +30,32 @@
       padding: 28px;
       border-radius: 20px;
       box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
+/*agregue*/
+      background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.05)
+    );
 
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    0 25px 50px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 rgba(255,255,255,0.1);
+}
+    
     /*h2 {
+      color: #ffffff; ---agregue
       text-align: center;
       margin-bottom: 24px;
       font-size: 22px;
     }*/   /*quite*/
 
     label {
+      color: #ffffff; /*agregue*/
       font-size: 16px;
       font-weight: 600;
       margin-top: 12px; 
@@ -53,8 +70,16 @@
       border: 1px solid #d1d5db;
       font-size: 16px;
       box-sizing: border-box;
+      /*agregue*/
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: #0f349f;
     }
-
+    /*agregue*/
+    input::placeholder {
+      color: #6b7280;
+    } /*---*/
+    
     input:focus {
       outline: none;
       border-color: #2563eb;
@@ -95,6 +120,7 @@ button:active {
       text-align: center;
       display: none;
       font-weight: 600;
+      backdrop-filter: blur(6px); /*agregue*/
     }
   </style>
 </head>
