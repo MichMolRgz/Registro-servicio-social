@@ -224,7 +224,11 @@ button:active {
 
     function enviar(event) {
       const boton = event.target;
+
+      const textoOriginal = boton.innerText;
+      
       boton.disabled = true;
+      boton.innerText = "Registrando...";
 
       const nombre = document.getElementById("nombre").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
@@ -232,6 +236,7 @@ button:active {
       if (!nombre || !matricula) {
         mostrarMensaje("❌ Completa todos los campos", "error");
         boton.disabled = false;
+        boton.innerText = textoOriginal;
         return;
       }
 
@@ -274,15 +279,18 @@ button:active {
               mostrarMensaje("❌ Error", "error");
             }
             boton.disabled = false;
+            boton.innerText = textoOriginal;
           })
           .catch(() => {
             mostrarMensaje("❌ Error de conexión", "error");
             boton.disabled = false;
+            boton.innerText = textoOriginal;
           });
         },
         () => {
           mostrarMensaje("❌ Debes permitir el acceso a la ubicación", "error");
           boton.disabled = false;
+          boton.innerText = textoOriginal;
         }
       );
     }
