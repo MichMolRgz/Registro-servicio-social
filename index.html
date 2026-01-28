@@ -170,7 +170,7 @@ button:active {
       <label>Matrícula</label>
       <input id="matricula" type="text" placeholder="Ej. A12345">
 
-      <button onclick="enviar(event)">Registrar Entrada</button>
+      <button onclick="enviar(this)">Registrar Entrada</button>
 
       <div id="mensaje"></div>
 
@@ -222,22 +222,27 @@ button:active {
       return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
 
-    function enviar(event) {
-      const boton = event.target;
-      const textoOriginal = boton.innerText;
-      
+    function activarCarga(boton) {
       boton.disabled = true;
       boton.innerText = "Registrando...";
+    }
 
-      const nombre = document.getElementById("nombre").value.trim();
-      const matricula = document.getElementById("matricula").value.trim();
+    function desactivarCarga(boton) {
+      boton.disabled = false;
+      boton.innerText = "Registrar Entrada";
+    }
 
-      if (!nombre || !matricula) {
-        mostrarMensaje("❌ Completa todos los campos", "error");
-        boton.disabled = false;
-        boton.innerText = textoOriginal;
-        return;
-      }
+    function enviar(boton) {
+      activarCarga(boton);
+
+  const nombre = document.getElementById("nombre").value.trim();
+  const matricula = document.getElementById("matricula").value.trim();
+
+  if (!nombre || !matricula) {
+    mostrarMensaje("❌ Completa todos los campos", "error");
+    desactivarCarga(boton);
+    return;
+  }
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
