@@ -233,16 +233,20 @@ button:active {
     }
 
     function enviar(boton) {
-      activarCarga(boton);
+     const textoOriginal = boton.innerText;
 
-  const nombre = document.getElementById("nombre").value.trim();
-  const matricula = document.getElementById("matricula").value.trim();
+     boton.disabled = true;
+     boton.innerText = "Registrando...";
 
-  if (!nombre || !matricula) {
-    mostrarMensaje("❌ Completa todos los campos", "error");
-    desactivarCarga(boton);
-    return;
-  }
+     const nombre = document.getElementById("nombre").value.trim();
+     const matricula = document.getElementById("matricula").value.trim();
+
+     if (!nombre || !matricula) {
+         mostrarMensaje("❌ Completa todos los campos", "error");
+         boton.disabled = false;
+         boton.innerText = textoOriginal;
+         return;
+    }
 
       navigator.geolocation.getCurrentPosition(
         (position) => {
