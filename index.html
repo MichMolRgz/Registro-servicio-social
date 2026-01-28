@@ -224,7 +224,10 @@ button:active {
 
     function enviar(event) {
       const boton = event.target;
+      const textoOriginal = boton.innerText;
+      
       boton.disabled = true;
+      boton.innerText = "Registrando...";
 
       const nombre = document.getElementById("nombre").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
