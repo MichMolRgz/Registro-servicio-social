@@ -235,6 +235,7 @@ button:active {
       if (!nombre || !matricula) {
         mostrarMensaje("❌ Completa todos los campos", "error");
         boton.disabled = false;
+        boton.innerText = textoOriginal;
         return;
       }
 
