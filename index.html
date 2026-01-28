@@ -170,7 +170,7 @@ button:active {
       <label>Matrícula</label>
       <input id="matricula" type="text" placeholder="Ej. A12345">
 
-      <button onclick="enviar(this)">Registrar Entrada</button>
+      <button id="btnEntrada" onclick="enviar()">Registrar Entrada</button>
 
       <div id="mensaje"></div>
 
@@ -232,74 +232,78 @@ button:active {
       boton.innerText = "Registrar Entrada";
     }
 
-    function enviar(boton) {
-     const textoOriginal = boton.innerText;
+    <script>
+function enviar() {
+  const boton = document.getElementById("btnEntrada");
+  const textoOriginal = "Registrar Entrada";
 
-     boton.disabled = true;
-     boton.innerText = "Registrando...";
+  boton.disabled = true;
+  boton.innerText = "Registrando...";
 
-     const nombre = document.getElementById("nombre").value.trim();
-     const matricula = document.getElementById("matricula").value.trim();
+  const nombre = document.getElementById("nombre").value.trim();
+  const matricula = document.getElementById("matricula").value.trim();
 
-     if (!nombre || !matricula) {
-         mostrarMensaje("❌ Completa todos los campos", "error");
-         boton.disabled = false;
-         boton.innerText = textoOriginal;
-         return;
-    }
+  if (!nombre || !matricula) {
+    mostrarMensaje("❌ Completa todos los campos", "error");
+    resetBoton();
+    return;
+  }
 
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
+  navigator.geolocation.getCurrentPosition(
+    (position) => {
+      const lat = position.coords.latitude;
+      const lng = position.coords.longitude;
 
-          const distancia = calcularDistancia(
-            lat,
-            lng,
-            UBICACION_PERMITIDA.lat,
-            UBICACION_PERMITIDA.lng
-          );
-
-          if (distancia > RADIO_METROS) {
-            mostrarMensaje("❌ Estás fuera de la zona permitida", "error");
-            boton.disabled = false;
-            return;
-          }
-
-          fetch(WEB_APP_URL, {
-            method: "POST",
-            body: JSON.stringify({
-              nombre,
-              matricula,
-              tipo: "ENTRADA",
-              ubicacion: `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`
-            })
-          })
-          .then(res => res.text())
-          .then(respuesta => {
-            if (respuesta === "OK") {
-              mostrarMensaje("✅ Entrada registrada correctamente", "ok");
-              document.getElementById("nombre").value = "";
-              document.getElementById("matricula").value = "";
-            } else if (respuesta === "YA_ENTRADA") {
-              mostrarMensaje("❌ Ya registraste entrada hoy", "error");
-            } else {
-              mostrarMensaje("❌ Error", "error");
-            }
-            boton.disabled = false;
-          })
-          .catch(() => {
-            mostrarMensaje("❌ Error de conexión", "error");
-            boton.disabled = false;
-          });
-        },
-        () => {
-          mostrarMensaje("❌ Debes permitir el acceso a la ubicación", "error");
-          boton.disabled = false;
-        }
+      const distancia = calcularDistancia(
+        lat,
+        lng,
+        UBICACION_PERMITIDA.lat,
+        UBICACION_PERMITIDA.lng
       );
-    }
-  </script>
 
-</body>
-</html>
+      if (distancia > RADIO_METROS) {
+        mostrarMensaje("❌ Estás fuera de la zona permitida", "error");
+        resetBoton();
+        return;
+      }
+
+      fetch(WEB_APP_URL, {
+        method: "POST",
+        body: JSON.stringify({
+          nombre,
+          matricula,
+          tipo: "ENTRADA",
+          ubicacion: `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`
+        })
+      })
+      .then(res => res.text())
+      .then(respuesta => {
+        if (respuesta === "OK") {
+          mostrarMensaje("✅ Entrada registrada correctamente", "ok");
+          document.getElementById("nombre").value = "";
+          document.getElementById("matricula").value = "";
+        } else if (respuesta === "YA_ENTRADA") {
+          mostrarMensaje("❌ Ya registraste entrada hoy", "error");
+        } else {
+          mostrarMensaje("❌ Error", "error");
+        }
+        resetBoton();
+      })
+      .catch(() => {
+        mostrarMensaje("❌ Error de conexión", "error");
+        resetBoton();
+      });
+    },
+    () => {
+      mostrarMensaje("❌ Debes permitir el acceso a la ubicación", "error");
+      resetBoton();
+    }
+  );
+
+  function resetBoton() {
+    boton.disabled = false;
+    boton.innerText = textoOriginal;
+  }
+}
+</script>
+
