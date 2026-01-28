@@ -17,11 +17,24 @@
     .container {
       min-height: 100vh;
       display: flex;
+      flex-direction: column; /* 👈 CLAVE */
       align-items: center;
       justify-content: center;
       padding: 16px;
     }
-    
+/* ===== IMAGEN SUPERIOR ===== */
+.header-image {
+  width: 100%;
+  max-width: 420px;
+  margin-bottom: 24px;
+  text-align: center;
+}
+
+.header-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
     /* ===== TARJETA ===== */
     .card {
       background: white;
@@ -129,6 +142,11 @@ button:active {
 <body>
 
   <div class="container">
+    
+    <div class="header-image"> 
+     <img src="Imagen1.png" alt="Servicio Social Registro">
+    </div>
+
     <div class="card">
 
       <label>Nombre</label>
