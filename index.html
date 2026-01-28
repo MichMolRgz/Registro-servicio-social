@@ -7,7 +7,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
-    /* ===== FONDO CON CUADRADOS ===== */
     body {
       margin: 0;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
@@ -68,13 +67,20 @@
       padding: 16px;
       border: none;
       border-radius: 14px;
-      background: #2563eb;
+      background: #0b8603;
       color: white;
       font-size: 16px;
       font-weight: bold;
       cursor: pointer;
+      transition: transform 0.1s ease, background 0.1s ease; /*agregue*/
     }
-
+/*agregue*/
+/* Feedback al tocar (mobile) */
+button:active {
+  transform: scale(0.97);
+  background: #086602; /* verde un poco más oscuro */
+}
+    
     button:disabled {
       background: #9ca3af;
       cursor: not-allowed;
