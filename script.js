@@ -1,5 +1,5 @@
 const WEB_APP_URL =
-  "https://script.google.com/macros/s/AKfycbxl_KARn4TEG2KA0VAFYRnw48ey7DlBAEAyeb8UphW2MjjFW156F1yuCDI-yz1WCRJZ/exec";
+  "https://script.google.com/macros/s/AKfycbxl-NFyTt2TfGZIo5uvEY6_jNXCHADcNGQre3nhNH6N52hCNd3bbJYCDG5O3euylw1s/exec";
 
 const UBICACION_PERMITIDA = {
   lat: 25.64732078497229,
