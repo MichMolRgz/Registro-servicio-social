@@ -13,21 +13,20 @@
       background-color: #0f349f;
     }
 
-    /* ===== CONTENEDOR ===== */
     .container {
       min-height: 100dvh;
       display: flex;
-      flex-direction: column; /* 👈 CLAVE */
+      flex-direction: column; 
       align-items: center;
       justify-content: center;
       padding: 20x 16px;
       gap; 16px;
     }
-/* ===== IMAGEN SUPERIOR ===== */
+
 .header-image {
   width: 100%;
   max-width: 420px;
-  margin-top: 65px; /*agregado*/
+  margin-top: 65px; 
   margin-bottom: 24px;
   text-align: center;
 }
@@ -37,16 +36,15 @@
   height: auto;
   display: block;
 }
-    /* ===== TARJETA ===== */
+    
     .card {
-      /* background: white; */
       width: 95%;
       max-width: 420px;
       padding: 24px;
       border-radius: 15px;
       box-sizing: border-box;
       box-shadow: 0 5px 10px rgba(0,0,0,0.2);
-/*agregue*/
+
       background: linear-gradient(
       135deg,
       rgba(255, 255, 255, 0.15),
@@ -62,16 +60,9 @@
     0 20px 20px rgba(0, 0, 0, 0.25),
     inset 0 0 0 rgba(255,255,255,0.1);
 }
-    
-    /*h2 {
-      color: #ffffff; ---agregue
-      text-align: center;
-      margin-bottom: 24px;
-      font-size: 22px;
-    }*/   /*quite*/
 
     label {
-      color: #ffffff; /*agregue*/
+      color: #ffffff; 
       font-size: 16px;
       font-weight: 600;
       margin-top: 12px; 
@@ -86,16 +77,12 @@
       border: 1px solid #d1d5db;
       font-size: 16px;
       box-sizing: border-box;
-      /*agregue*/
+  
       background: rgba(255, 255, 255, 0.9);
       border: none;
       color: #000000;
       font-weight: 500;
     }
-    /*color del ejemplo: agregado
-    input::placeholder {
-      color: #6b7280;
-    } /*---*/
     
     input:focus {
       outline: none;
@@ -114,13 +101,12 @@
       font-size: 18px;
       font-weight: bold;
       cursor: pointer;
-      transition: transform 0.1s ease, background 0.1s ease; /*agregue*/
+      transition: transform 0.1s ease, background 0.1s ease; 
     }
-/*agregue*/
-/* Feedback al tocar (mobile) */
+
 button:active {
   transform: scale(0.97);
-  background: #086602; /* verde un poco más oscuro */
+  background: #086602; 
 }
 
 button.loading {
@@ -131,7 +117,6 @@ button.loading {
       background: #9ca3af;
     }
 
-    /* ===== MENSAJES ===== */
     #mensaje {
       margin-top: 16px;
       padding: 14px;
@@ -140,10 +125,9 @@ button.loading {
       text-align: center;
       display: none;
       font-weight: 600;
-      backdrop-filter: blur(6px); /*agregue*/
+      backdrop-filter: blur(6px); 
     }
 
-    /* ===== LOGO INFERIOR ===== */
 .footer-logo {
   margin-top: 40px;
   padding-bottom: 15px;
@@ -151,7 +135,7 @@ button.loading {
 }
 
 .footer-logo img {
-  width: 400px;       /* ajustable */
+  width: 400px;      
   max-width: 70%;
   height: auto;
   opacity: 0.95;
@@ -234,14 +218,13 @@ button.loading {
 
       return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
-  /*...*/  
+ 
   let textoOriginal = "";
   let animacionPuntos = null;
 
     function vibrarError() {
   if ("vibrate" in navigator) {
     navigator.vibrate([120, 60, 120]); 
-    // vibra – pausa – vibra (más notorio)
   }
 }
     
@@ -263,11 +246,10 @@ button.loading {
       const nombre = document.getElementById("nombre").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
 
-      // ===== VALIDACIÓN MATRÍCULA =====
       const regexMatricula = /^[A-Z][0-9]{8}$/;
 
       if (!regexMatricula.test(matricula)) {
-        vibrarError(); // tu vibración
+        vibrarError(); 
         mostrarMensaje("❌ Matrícula inválida (Formato: A12345678)", "error");
         boton.disabled = false;
         clearInterval(animacionPuntos);
