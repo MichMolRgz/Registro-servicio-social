@@ -221,14 +221,23 @@ button:active {
 
       return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
     }
-
+  /*...*/  
+  let textoOriginal = "";
+  let animacionPuntos = null;
+    
     function enviar(event) {
       const boton = event.target;
-
-      const textoOriginal = boton.innerText;
-      
       boton.disabled = true;
+      
+      const textoOriginal = boton.innerText;
+      let puntos = 0;
+      
       boton.innerText = "Registrando...";
+
+      animacionPuntos = setInterval(() => {
+        puntos = (puntos + 1) % 4;
+        boton.innerText = "Registrando" + ".".repeat(puntos);
+      }, 500);
 
       const nombre = document.getElementById("nombre").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
@@ -236,6 +245,8 @@ button:active {
       if (!nombre || !matricula) {
         mostrarMensaje("❌ Completa todos los campos", "error");
         boton.disabled = false;
+        boton.innerText = textoOriginal;
+        clearInterval(animacionPuntos);
         boton.innerText = textoOriginal;
         return;
       }
@@ -255,6 +266,8 @@ button:active {
           if (distancia > RADIO_METROS) {
             mostrarMensaje("❌ Estás fuera de la zona permitida", "error");
             boton.disabled = false;
+            clearInterval(animacionPuntos);
+            boton.innerText = textoOriginal;
             return;
           }
 
@@ -278,13 +291,16 @@ button:active {
             } else {
               mostrarMensaje("❌ Error", "error");
             }
-            boton.disabled = false;
+            clearInterval(animacionPuntos);
             boton.innerText = textoOriginal;
+            boton.disabled = false;
+            
           })
           .catch(() => {
+            clearInterval(animacionPuntos);
+            boton.innerText = textoOriginal;
             mostrarMensaje("❌ Error de conexión", "error");
             boton.disabled = false;
-            boton.innerText = textoOriginal;
           });
         },
         () => {
