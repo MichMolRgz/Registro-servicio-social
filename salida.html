@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Registro Entrada</title>
+  <title>Registro Salida</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -167,7 +167,7 @@ button.loading {
         oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
         >
 
-      <button onclick="enviar(event)">Registrar Entrada</button>
+      <button onclick="enviar(event)">Registrar Salida</button>
 
       <div id="mensaje"></div>
 
@@ -296,18 +296,18 @@ button.loading {
             body: JSON.stringify({
               nombre,
               matricula,
-              tipo: "ENTRADA",
+              tipo: "SALIDA",
               ubicacion: `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`
             })
           })
           .then(res => res.text())
           .then(respuesta => {
             if (respuesta === "OK") {
-              mostrarMensaje("✅ Entrada registrada correctamente", "ok");
+              mostrarMensaje("✅ Salida registrada correctamente", "ok");
               document.getElementById("nombre").value = "";
               document.getElementById("matricula").value = "";
-            } else if (respuesta === "YA_ENTRADA") {
-              mostrarMensaje("❌ Ya registraste entrada hoy", "error");
+            } else if (respuesta === "YA_SALIDA") {
+              mostrarMensaje("❌ Ya registraste salida hoy", "error");
             } else {
               mostrarMensaje("❌ Error", "error");
             }
