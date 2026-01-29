@@ -15,12 +15,13 @@
 
     /* ===== CONTENEDOR ===== */
     .container {
-      min-height: 100vh;
+      min-height: 100dvh;
       display: flex;
       flex-direction: column; /* 👈 CLAVE */
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 20x 16px;
+      gap; 16px;
     }
 /* ===== IMAGEN SUPERIOR ===== */
 .header-image {
@@ -37,12 +38,13 @@
 }
     /* ===== TARJETA ===== */
     .card {
-      background: white;
+      /* background: white; */
       width: 100%;
       max-width: 420px;
-      padding: 28px;
+      padding: 24px;
       border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+      box-sizing: border-box;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.2);
 /*agregue*/
       background: linear-gradient(
       135deg,
@@ -142,13 +144,13 @@ button.loading {
 
     /* ===== LOGO INFERIOR ===== */
 .footer-logo {
-  margin-top: 70px;
-  padding-bottom: 24px;
+  margin-top: 24px;
+  padding-bottom: 12px;
   text-align: center;
 }
 
 .footer-logo img {
-  width: 450px;       /* ajustable */
+  width: 400px;       /* ajustable */
   max-width: 70%;
   height: auto;
   opacity: 0.95;
