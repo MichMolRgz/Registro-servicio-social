@@ -184,8 +184,8 @@ button.loading {
       "https://script.google.com/macros/s/AKfycbxItJv3GqITuJwK6oNmM9zGuEMnY_cKq_cRMZEnNzhSZXMyg4Y51bt4kc-HDKIprT5V/exec";
 
     const UBICACION_PERMITIDA = {
-      lat: 25.64732078497229,
-      lng: -100.29012497772246
+      lat: 18.988980344982416,
+      lng: -98.28277831844889
     };
 
     const RADIO_METROS = 300;
