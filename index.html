@@ -227,6 +227,13 @@ button.loading {
   /*...*/  
   let textoOriginal = "";
   let animacionPuntos = null;
+
+    function vibrarError() {
+  if ("vibrate" in navigator) {
+    navigator.vibrate([120, 60, 120]); 
+    // vibra – pausa – vibra (más notorio)
+  }
+}
     
     function enviar(event) {
       const boton = event.target;
@@ -247,6 +254,7 @@ button.loading {
       const matricula = document.getElementById("matricula").value.trim();
 
       if (!nombre || !matricula) {
+        vibrarError();
         mostrarMensaje("❌ Completa todos los campos", "error");
         boton.disabled = false;
         boton.innerText = textoOriginal;
@@ -269,6 +277,7 @@ button.loading {
           );
 
           if (distancia > RADIO_METROS) {
+            vibrarError();
             mostrarMensaje("❌ Estás fuera de la zona permitida", "error");
             boton.disabled = false;
             clearInterval(animacionPuntos);
@@ -307,11 +316,13 @@ button.loading {
             clearInterval(animacionPuntos);
             boton.innerText = textoOriginal;
             boton.classList.remove("loading");
+            vibrarError();
             mostrarMensaje("❌ Error de conexión", "error");
             boton.disabled = false;
           });
         },
         () => {
+          vibrarError();
           mostrarMensaje("❌ Debes permitir el acceso a la ubicación", "error");
           boton.disabled = false;
           boton.classList.remove("loading");
