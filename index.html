@@ -171,14 +171,7 @@ button.loading {
       <input id="nombre" type="text" placeholder="Ej. Juan Pérez">
 
       <label>Matrícula</label>
-      <input 
-        id="matricula" 
-        type="text" 
-        placeholder="Ej. A01234567"
-        maxlength="9"
-        style="text-transform: uppercase;"
-        oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
-        >
+      <input id="matricula" type="text" placeholder="Ej. A12345">
 
       <button onclick="enviar(event)">Registrar Entrada</button>
 
@@ -259,15 +252,6 @@ button.loading {
 
       const nombre = document.getElementById("nombre").value.trim();
       const matricula = document.getElementById("matricula").value.trim();
-      const regexMatricula = /^[A-Z][0-9]{8}$/;
-      if (!regexMatricula.test(matricula)) {
-        vibrarError();
-        mostrarMensaje("❌ Matrícula inválida (Formato: A12345678)", "error");
-        boton.disabled = false;
-        clearInterval(animacionPuntos);
-        boton.innerText = textoOriginal;
-        return;
-      }
 
       if (!nombre || !matricula) {
         vibrarError();
