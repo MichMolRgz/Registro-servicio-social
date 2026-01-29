@@ -306,6 +306,8 @@ button.loading {
               mostrarMensaje("✅ Salida registrada correctamente", "ok");
               document.getElementById("nombre").value = "";
               document.getElementById("matricula").value = "";
+            } else if (respuesta === "SIN_ENTRADA") {
+              mostrarMensaje("❌ Primero debes registrar entrada", "error");
             } else if (respuesta === "YA_SALIDA") {
               mostrarMensaje("❌ Ya registraste salida hoy", "error");
             } else {
@@ -335,6 +337,11 @@ button.loading {
         }
       );
     }
+     document.addEventListener("DOMContentLoaded", () => {
+      document
+        .getElementById("btnSalida")
+        .addEventListener("click", enviar);
+    });
   </script>
 
 </body>
