@@ -1,233 +1,245 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Registro Salida</title>
+<meta charset="UTF-8">
+<title>Registro Salida</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  background-color: #0f349f;
+}
 
-  <style>
-    body {
-      margin: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background-color: #f9fafb;
-      background-image:
-        linear-gradient(to right, #e5e7eb 1px, transparent 1px),
-        linear-gradient(to bottom, #e5e7eb 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
+/* ===== LAYOUT ===== */
+.container {
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 20px 16px;
+  gap: 16px;
+}
 
-    .container {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
+/* ===== HEADER ===== */
+.header-image {
+  width: 100%;
+  max-width: 420px;
+  margin-top: 65px;
+}
 
-    .card {
-      background: white;
-      width: 100%;
-      max-width: 420px;
-      padding: 28px;
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-    }
+.header-image img {
+  width: 100%;
+  height: auto;
+}
 
-    h2 {
-      text-align: center;
-      margin-bottom: 24px;
-      font-size: 22px;
-    }
+/* ===== CARD ===== */
+.card {
+  width: 95%;
+  max-width: 420px;
+  padding: 24px;
+  border-radius: 15px;
 
-    label {
-      font-size: 14px;
-      font-weight: 600;
-      margin-top: 12px;
-      display: block;
-    }
+  background: linear-gradient(
+    135deg,
+    rgba(255,255,255,0.15),
+    rgba(255,255,255,0.05)
+  );
 
-    input {
-      width: 100%;
-      padding: 14px;
-      margin-top: 6px;
-      border-radius: 12px;
-      border: 1px solid #d1d5db;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
 
-    input:focus {
-      outline: none;
-      border-color: #dc2626;
-      box-shadow: 0 0 0 2px rgba(220,38,38,0.15);
-    }
+  box-shadow: 0 20px 20px rgba(0,0,0,0.25);
+}
 
-    button {
-      width: 100%;
-      margin-top: 20px;
-      padding: 16px;
-      border: none;
-      border-radius: 14px;
-      background: #dc2626;
-      color: white;
-      font-size: 16px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+label {
+  color: white;
+  font-weight: 600;
+  margin-top: 12px;
+  display: block;
+}
 
-    button:disabled {
-      background: #9ca3af;
-      cursor: not-allowed;
-    }
+input {
+  width: 100%;
+  padding: 14px;
+  margin-top: 6px;
+  border-radius: 12px;
+  border: none;
+  background: rgba(255,255,255,0.9);
+  color: black;
+  font-size: 16px;
+}
 
-    #mensaje {
-      margin-top: 16px;
-      padding: 14px;
-      border-radius: 12px;
-      font-size: 14px;
-      text-align: center;
-      display: none;
-      font-weight: 600;
-    }
-  </style>
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
+}
+
+/* ===== BOTÓN SALIDA (ROJO) ===== */
+button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #dc2626;
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+button:active {
+  transform: scale(0.97);
+}
+
+button.loading {
+  color: #ff6d01;
+}
+
+button:disabled {
+  background: #9ca3af;
+}
+
+/* ===== MENSAJE ===== */
+#mensaje {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  display: none;
+  text-align: center;
+  font-weight: 600;
+}
+
+/* ===== LOGO ===== */
+.footer-logo {
+  margin-top: 80px;
+  text-align: center;
+}
+
+.footer-logo img {
+  max-width: 70%;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="container">
-    <div class="card">
+<div class="container">
 
-      <h2>Registro de SALIDA</h2>
-
-      <label>Nombre</label>
-      <input id="nombre" type="text" placeholder="Ej. Juan Pérez">
-
-      <label>Matrícula</label>
-      <input id="matricula" type="text" placeholder="Ej. A12345">
-
-      <!-- BOTÓN SIN onclick -->
-      <button id="btnSalida" type="button">Registrar Salida</button>
-
-      <div id="mensaje"></div>
-
-    </div>
+  <div class="header-image">
+    <img src="Imagen1.png">
   </div>
 
-  <script>
-    const WEB_APP_URL =
-      "https://script.google.com/macros/s/AKfycbxItJv3GqITuJwK6oNmM9zGuEMnY_cKq_cRMZEnNzhSZXMyg4Y51bt4kc-HDKIprT5V/exec";
+  <div class="card">
 
-    const UBICACION_PERMITIDA = {
-      lat: 25.64732078497229,
-      lng: -100.29012497772246
-    };
+    <label>Nombre</label>
+    <input id="nombre" placeholder="Ej. Juan Pérez">
 
-    const RADIO_METROS = 300;
+    <label>Matrícula</label>
+    <input
+      id="matricula"
+      maxlength="9"
+      placeholder="A12345678"
+      style="text-transform:uppercase"
+      oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
+    >
 
-    function mostrarMensaje(texto, tipo) {
-      const div = document.getElementById("mensaje");
-      div.innerText = texto;
-      div.style.display = "block";
+    <button onclick="enviar(event)">Registrar Salida</button>
 
-      if (tipo === "ok") {
-        div.style.backgroundColor = "#d1fae5";
-        div.style.color = "#065f46";
-      } else {
-        div.style.backgroundColor = "#fee2e2";
-        div.style.color = "#991b1b";
-      }
-    }
+    <div id="mensaje"></div>
 
-    function calcularDistancia(lat1, lng1, lat2, lng2) {
-      const R = 6371000;
-      const toRad = x => x * Math.PI / 180;
+  </div>
 
-      const dLat = toRad(lat2 - lat1);
-      const dLng = toRad(lng2 - lng1);
+  <div class="footer-logo">
+    <img src="Logo.png">
+  </div>
 
-      const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
-        Math.sin(dLng / 2) ** 2;
+</div>
 
-      return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-    }
+<script>
+const WEB_APP_URL = "TU_URL_AQUI";
 
-    function enviar(event) {
-      const boton = event.target;
-      boton.disabled = true;
+/* ===== vibración ===== */
+function vibrarError(){
+  if("vibrate" in navigator){
+    navigator.vibrate([120,60,120]);
+  }
+}
 
-      const nombre = document.getElementById("nombre").value.trim();
-      const matricula = document.getElementById("matricula").value.trim();
+/* ===== mensaje ===== */
+function mostrarMensaje(texto,tipo){
+  const div=document.getElementById("mensaje");
+  div.innerText=texto;
+  div.style.display="block";
 
-      if (!nombre || !matricula) {
-        mostrarMensaje("❌ Completa todos los campos", "error");
-        boton.disabled = false;
-        return;
-      }
+  if(tipo==="ok"){
+    div.style.background="#d1fae5";
+    div.style.color="#065f46";
+  }else{
+    div.style.background="#fee2e2";
+    div.style.color="#991b1b";
+  }
+}
 
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          const lat = position.coords.latitude;
-          const lng = position.coords.longitude;
+/* ===== enviar ===== */
+function enviar(event){
 
-          const distancia = calcularDistancia(
-            lat,
-            lng,
-            UBICACION_PERMITIDA.lat,
-            UBICACION_PERMITIDA.lng
-          );
+  const boton=event.target;
+  const textoOriginal=boton.innerText;
 
-          if (distancia > RADIO_METROS) {
-            mostrarMensaje("❌ Estás fuera de la zona permitida", "error");
-            boton.disabled = false;
-            return;
-          }
+  boton.disabled=true;
+  boton.classList.add("loading");
 
-          fetch(WEB_APP_URL, {
-            method: "POST",
-            body: JSON.stringify({
-              nombre,
-              matricula,
-              tipo: "SALIDA",
-              ubicacion: `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`
-            })
-          })
-          .then(res => res.text())
-          .then(respuesta => {
-            if (respuesta === "OK") {
-              mostrarMensaje("✅ Salida registrada correctamente", "ok");
-              document.getElementById("nombre").value = "";
-              document.getElementById("matricula").value = "";
-            } else if (respuesta === "SIN_ENTRADA") {
-              mostrarMensaje("❌ Primero debes registrar entrada", "error");
-            } else if (respuesta === "YA_SALIDA") {
-              mostrarMensaje("❌ Ya registraste salida hoy", "error");
-            } else {
-              mostrarMensaje("❌ Error", "error");
-            }
-            boton.disabled = false;
-          })
-          .catch(() => {
-            mostrarMensaje("❌ Error de conexión", "error");
-            boton.disabled = false;
-          });
-        },
-        () => {
-          mostrarMensaje("❌ Debes permitir el acceso a la ubicación", "error");
-          boton.disabled = false;
-        }
-      );
-    }
+  let puntos=0;
 
-    /* ===== EVENT LISTENER (CLAVE) ===== */
-    document.addEventListener("DOMContentLoaded", () => {
-      document
-        .getElementById("btnSalida")
-        .addEventListener("click", enviar);
-    });
-  </script>
+  const anim=setInterval(()=>{
+    puntos=(puntos+1)%4;
+    boton.innerText="Registrando"+ ".".repeat(puntos);
+  },400);
+
+  const nombre=document.getElementById("nombre").value.trim();
+  const matricula=document.getElementById("matricula").value.trim();
+
+  const regex=/^[A-Z][0-9]{8}$/;
+
+  if(!regex.test(matricula)){
+    vibrarError();
+    mostrarMensaje("❌ Matrícula inválida","error");
+    clearInterval(anim);
+    boton.disabled=false;
+    boton.classList.remove("loading");
+    boton.innerText=textoOriginal;
+    return;
+  }
+
+  fetch(WEB_APP_URL,{
+    method:"POST",
+    body:JSON.stringify({
+      nombre,
+      matricula,
+      tipo:"SALIDA"
+    })
+  })
+  .then(r=>r.text())
+  .then(()=>{
+    mostrarMensaje("✅ Salida registrada correctamente","ok");
+    document.getElementById("nombre").value="";
+    document.getElementById("matricula").value="";
+  })
+  .catch(()=>{
+    vibrarError();
+    mostrarMensaje("❌ Error de conexión","error");
+  })
+  .finally(()=>{
+    clearInterval(anim);
+    boton.disabled=false;
+    boton.classList.remove("loading");
+    boton.innerText=textoOriginal;
+  });
+}
+</script>
 
 </body>
 </html>
