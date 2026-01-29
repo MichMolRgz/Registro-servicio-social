@@ -1,245 +1,341 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Registro Salida</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <title>Registro Entrada</title>
 
-<style>
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  background-color: #0f349f;
-}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* ===== LAYOUT ===== */
-.container {
-  min-height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 20px 16px;
-  gap: 16px;
-}
+  <style>
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background-color: #0f349f;
+    }
 
-/* ===== HEADER ===== */
+    .container {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column; 
+      align-items: center;
+      justify-content: center;
+      padding: 20x 16px;
+      gap; 16px;
+    }
+
 .header-image {
   width: 100%;
   max-width: 420px;
-  margin-top: 65px;
+  margin-top: 65px; 
+  margin-bottom: 24px;
+  text-align: center;
 }
 
 .header-image img {
   width: 100%;
   height: auto;
-}
-
-/* ===== CARD ===== */
-.card {
-  width: 95%;
-  max-width: 420px;
-  padding: 24px;
-  border-radius: 15px;
-
-  background: linear-gradient(
-    135deg,
-    rgba(255,255,255,0.15),
-    rgba(255,255,255,0.05)
-  );
-
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.2);
-
-  box-shadow: 0 20px 20px rgba(0,0,0,0.25);
-}
-
-label {
-  color: white;
-  font-weight: 600;
-  margin-top: 12px;
   display: block;
 }
+    
+    .card {
+      width: 95%;
+      max-width: 420px;
+      padding: 24px;
+      border-radius: 15px;
+      box-sizing: border-box;
+      box-shadow: 0 5px 10px rgba(0,0,0,0.2);
 
-input {
-  width: 100%;
-  padding: 14px;
-  margin-top: 6px;
-  border-radius: 12px;
-  border: none;
-  background: rgba(255,255,255,0.9);
-  color: black;
-  font-size: 16px;
+      background: linear-gradient(
+      135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.05)
+    );
+
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+
+  border: 1px solid rgba(255, 255, 255, 0.2);
+
+  box-shadow:
+    0 20px 20px rgba(0, 0, 0, 0.25),
+    inset 0 0 0 rgba(255,255,255,0.1);
 }
 
-input:focus {
-  outline: none;
-  box-shadow: 0 0 0 2px rgba(37,99,235,0.2);
-}
+    label {
+      color: #ffffff; 
+      font-size: 16px;
+      font-weight: 600;
+      margin-top: 12px; 
+      display: block;
+    }
 
-/* ===== BOTÓN SALIDA (ROJO) ===== */
-button {
-  width: 100%;
-  margin-top: 20px;
-  padding: 16px;
-  border: none;
-  border-radius: 14px;
-  background: #dc2626;
-  color: white;
-  font-size: 18px;
-  font-weight: bold;
-}
+    input {
+      width: 100%;
+      padding: 14px;
+      margin-top: 6px;
+      border-radius: 12px;
+      border: 1px solid #d1d5db;
+      font-size: 16px;
+      box-sizing: border-box;
+  
+      background: rgba(255, 255, 255, 0.9);
+      border: none;
+      color: #000000;
+      font-weight: 500;
+    }
+    
+    input:focus {
+      outline: none;
+      border-color: #2563eb;
+      box-shadow: 0 0 0 2px rgba(37,99,235,0.15);
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 16px;
+      border: none;
+      border-radius: 14px;
+      background: #0b8603;
+      color: white;
+      font-size: 18px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.1s ease, background 0.1s ease; 
+    }
 
 button:active {
   transform: scale(0.97);
+  background: #086602; 
 }
 
 button.loading {
-  color: #ff6d01;
+  color: #2b2b2b;
 }
+    
+    button:disabled {
+      background: #9ca3af;
+    }
 
-button:disabled {
-  background: #9ca3af;
-}
+    #mensaje {
+      margin-top: 16px;
+      padding: 14px;
+      border-radius: 12px;
+      font-size: 14px;
+      text-align: center;
+      display: none;
+      font-weight: 600;
+      backdrop-filter: blur(6px); 
+    }
 
-/* ===== MENSAJE ===== */
-#mensaje {
-  margin-top: 16px;
-  padding: 14px;
-  border-radius: 12px;
-  display: none;
-  text-align: center;
-  font-weight: 600;
-}
-
-/* ===== LOGO ===== */
 .footer-logo {
-  margin-top: 80px;
+  margin-top: 40px;
+  padding-bottom: 15px;
   text-align: center;
 }
 
 .footer-logo img {
+  width: 400px;      
   max-width: 70%;
+  height: auto;
+  opacity: 0.95;
 }
-</style>
+    
+  </style>
 </head>
 
 <body>
 
-<div class="container">
+  <div class="container">
+    
+    <div class="header-image"> 
+     <img src="Imagen1.png" alt="Servicio Social Registro">
+    </div>
 
-  <div class="header-image">
-    <img src="Imagen1.png">
+    <div class="card">
+
+      <label>Nombre</label>
+      <input id="nombre" type="text" placeholder="Ej. Juan Pérez">
+
+      <label>Matrícula</label>
+      <input 
+        id="matricula" 
+        type="text" 
+        placeholder="Ej. A01234567"
+        maxlength="9"
+        style="text-transform: uppercase;"
+        oninput="this.value = this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
+        >
+
+      <button onclick="enviar(event)">Registrar Entrada</button>
+
+      <div id="mensaje"></div>
+
+    </div>
+
+    <div class="footer-logo">
+      <img src="Logo.png" alt="Fuerza y Esperanza">
+    </div>
+    
   </div>
 
-  <div class="card">
+  <script>
+    const WEB_APP_URL =
+      "https://script.google.com/macros/s/AKfycbxItJv3GqITuJwK6oNmM9zGuEMnY_cKq_cRMZEnNzhSZXMyg4Y51bt4kc-HDKIprT5V/exec";
 
-    <label>Nombre</label>
-    <input id="nombre" placeholder="Ej. Juan Pérez">
+    const UBICACION_PERMITIDA = {
+      lat: 25.64732078497229,
+      lng: -100.29012497772246
+    };
 
-    <label>Matrícula</label>
-    <input
-      id="matricula"
-      maxlength="9"
-      placeholder="A12345678"
-      style="text-transform:uppercase"
-      oninput="this.value=this.value.toUpperCase().replace(/[^A-Z0-9]/g,'')"
-    >
+    const RADIO_METROS = 300;
 
-    <button onclick="enviar(event)">Registrar Salida</button>
+    function mostrarMensaje(texto, tipo) {
+      const div = document.getElementById("mensaje");
+      div.innerText = texto;
+      div.style.display = "block";
 
-    <div id="mensaje"></div>
+      if (tipo === "ok") {
+        div.style.backgroundColor = "#d1fae5";
+        div.style.color = "#065f46";
+      } else {
+        div.style.backgroundColor = "#fee2e2";
+        div.style.color = "#991b1b";
+      }
+    }
 
-  </div>
+    function calcularDistancia(lat1, lng1, lat2, lng2) {
+      const R = 6371000;
+      const toRad = x => x * Math.PI / 180;
 
-  <div class="footer-logo">
-    <img src="Logo.png">
-  </div>
+      const dLat = toRad(lat2 - lat1);
+      const dLng = toRad(lng2 - lng1);
 
-</div>
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) *
+        Math.sin(dLng / 2) ** 2;
 
-<script>
-const WEB_APP_URL = "TU_URL_AQUI";
+      return 2 * R * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    }
+ 
+  let textoOriginal = "";
+  let animacionPuntos = null;
 
-/* ===== vibración ===== */
-function vibrarError(){
-  if("vibrate" in navigator){
-    navigator.vibrate([120,60,120]);
+    function vibrarError() {
+  if ("vibrate" in navigator) {
+    navigator.vibrate([120, 60, 120]); 
   }
 }
+    
+    function enviar(event) {
+      const boton = event.target;
+      boton.disabled = true;
+      
+      boton.classList.add("loading"); 
+      const textoOriginal = boton.innerText;
+      let puntos = 0;
 
-/* ===== mensaje ===== */
-function mostrarMensaje(texto,tipo){
-  const div=document.getElementById("mensaje");
-  div.innerText=texto;
-  div.style.display="block";
+      boton.innerText = "Registrando...";
 
-  if(tipo==="ok"){
-    div.style.background="#d1fae5";
-    div.style.color="#065f46";
-  }else{
-    div.style.background="#fee2e2";
-    div.style.color="#991b1b";
-  }
-}
+      animacionPuntos = setInterval(() => {
+        puntos = (puntos + 1) % 4;
+        boton.innerText = "Registrando" + ".".repeat(puntos);
+      }, 500);
 
-/* ===== enviar ===== */
-function enviar(event){
+      const nombre = document.getElementById("nombre").value.trim();
+      const matricula = document.getElementById("matricula").value.trim();
 
-  const boton=event.target;
-  const textoOriginal=boton.innerText;
+      const regexMatricula = /^[A-Z][0-9]{8}$/;
 
-  boton.disabled=true;
-  boton.classList.add("loading");
+      if (!regexMatricula.test(matricula)) {
+        vibrarError(); 
+        mostrarMensaje("❌ Matrícula inválida (Formato: A12345678)", "error");
+        boton.disabled = false;
+        clearInterval(animacionPuntos);
+        boton.innerText = textoOriginal;
+        boton.classList.remove("loading");
+        return;
+      }
 
-  let puntos=0;
+      if (!nombre || !matricula) {
+        vibrarError();
+        mostrarMensaje("❌ Completa todos los campos", "error");
+        boton.disabled = false;
+        boton.innerText = textoOriginal;
+        clearInterval(animacionPuntos);
+        boton.innerText = textoOriginal;
+        boton.classList.remove("loading");
+        return;
+      }
 
-  const anim=setInterval(()=>{
-    puntos=(puntos+1)%4;
-    boton.innerText="Registrando"+ ".".repeat(puntos);
-  },400);
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
 
-  const nombre=document.getElementById("nombre").value.trim();
-  const matricula=document.getElementById("matricula").value.trim();
+          const distancia = calcularDistancia(
+            lat,
+            lng,
+            UBICACION_PERMITIDA.lat,
+            UBICACION_PERMITIDA.lng
+          );
 
-  const regex=/^[A-Z][0-9]{8}$/;
+          if (distancia > RADIO_METROS) {
+            vibrarError();
+            mostrarMensaje("❌ Estás fuera de la zona permitida", "error");
+            boton.disabled = false;
+            clearInterval(animacionPuntos);
+            boton.innerText = textoOriginal;
+            boton.classList.remove("loading");
+            return;
+          }
 
-  if(!regex.test(matricula)){
-    vibrarError();
-    mostrarMensaje("❌ Matrícula inválida","error");
-    clearInterval(anim);
-    boton.disabled=false;
-    boton.classList.remove("loading");
-    boton.innerText=textoOriginal;
-    return;
-  }
-
-  fetch(WEB_APP_URL,{
-    method:"POST",
-    body:JSON.stringify({
-      nombre,
-      matricula,
-      tipo:"SALIDA"
-    })
-  })
-  .then(r=>r.text())
-  .then(()=>{
-    mostrarMensaje("✅ Salida registrada correctamente","ok");
-    document.getElementById("nombre").value="";
-    document.getElementById("matricula").value="";
-  })
-  .catch(()=>{
-    vibrarError();
-    mostrarMensaje("❌ Error de conexión","error");
-  })
-  .finally(()=>{
-    clearInterval(anim);
-    boton.disabled=false;
-    boton.classList.remove("loading");
-    boton.innerText=textoOriginal;
-  });
-}
-</script>
+          fetch(WEB_APP_URL, {
+            method: "POST",
+            body: JSON.stringify({
+              nombre,
+              matricula,
+              tipo: "ENTRADA",
+              ubicacion: `Lat: ${lat.toFixed(6)}, Lng: ${lng.toFixed(6)}`
+            })
+          })
+          .then(res => res.text())
+          .then(respuesta => {
+            if (respuesta === "OK") {
+              mostrarMensaje("✅ Entrada registrada correctamente", "ok");
+              document.getElementById("nombre").value = "";
+              document.getElementById("matricula").value = "";
+            } else if (respuesta === "YA_ENTRADA") {
+              mostrarMensaje("❌ Ya registraste entrada hoy", "error");
+            } else {
+              mostrarMensaje("❌ Error", "error");
+            }
+            clearInterval(animacionPuntos);
+            boton.innerText = textoOriginal;
+            boton.classList.remove("loading");
+            boton.disabled = false;
+            
+          })
+          .catch(() => {
+            clearInterval(animacionPuntos);
+            boton.innerText = textoOriginal;
+            boton.classList.remove("loading");
+            vibrarError();
+            mostrarMensaje("❌ Error de conexión", "error");
+            boton.disabled = false;
+          });
+        },
+        () => {
+          vibrarError();
+          mostrarMensaje("❌ Debes permitir el acceso a la ubicación", "error");
+          boton.disabled = false;
+          boton.classList.remove("loading");
+          boton.innerText = textoOriginal;
+        }
+      );
+    }
+  </script>
 
 </body>
 </html>
